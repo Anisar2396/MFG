@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MFGAweb"
+    "\\MFGAweb",
+    "\\MFGAweb\\Controllers",
+    "\\MFGAweb\\Views"
   ],
-  "SelectedNode": "\\MFGAweb\\Models",
+  "SelectedNode": "\\MFGAweb.sln",
   "PreviewInSolutionExplorer": false
 }
