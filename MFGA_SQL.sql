@@ -288,6 +288,20 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
+-- -----------------------------------------------------
+-- Table `mfga`.`info`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mfga`.`info` ;
+
+CREATE TABLE IF NOT EXISTS `mfga`.`info` (
+  `idinfo` INT NOT NULL,
+  `descripcion` LONGTEXT NULL,
+  `lugar_idlugar` INT NOT NULL,
+  PRIMARY KEY (`idinfo`),
+  INDEX `fk_info_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
