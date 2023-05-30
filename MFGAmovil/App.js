@@ -1,17 +1,15 @@
-import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import UseStyles  from './Styles/Styles.js';
-import  Login  from './Login/Login.js';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import Login from '../MFGAmovil/Login/Login.js';
 
-
-
-export default function App() {
-  return (
-    <View>
-      <Login />
-      <UseStyles />
-    </View>
-  );
+class App extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        <Login />
+      </View>
+    );
+  }
 }
 
+export default App;

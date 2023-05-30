@@ -1,11 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useState } from 'react';
+import { StyleSheet } from 'react-native';
 
-export default function UseStyles() {
-  const Component = () => {
-    const [isDisabled, setDisabled] = useState(true);
-    const estilos = UseStyles([isDisabled])
+
+
 
 
 
@@ -15,12 +12,22 @@ export default function UseStyles() {
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        Text: {
-          fontSize: 20,
-          fontWeight: 'bold',
-        }
+        
+      },
+      title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 20,
+      },
+      input: {
+        width: '100%',
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        marginBottom: 10,
+        paddingHorizontal: 10,
       },
     });
 
-  }
-}
+  
+export default styles;

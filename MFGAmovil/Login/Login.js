@@ -1,22 +1,33 @@
-import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import  UseStyles from '../Styles/Styles.js';
+import React, { Component } from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
+import styles from '../Styles/Styles.js';
 
-export default function Login() {
-    const Component = () => {
-        const [isDisabled, setDisabled] = useState(true);
-
-
+class Login extends Component {
+    render() {
         return (
-            <View style={UseStyles.container}>
-                <View>
-                    <Text> Bienvenidx </Text>
-                    <View>
-                        <Text> Inicia Sesión para Continuar</Text>
-                    </View>
-                </View>
+            <View style={styles.container}>
+                <Text style={styles.title}> Iniciar Sesión </Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Usuario'
+
+
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder='Contraseña'
+                />
+                <Button
+                    title="Iniciar sesión"
+                    onPress={() => {
+                        // Lógica de inicio de sesión
+                    }}
+                />
+
+
             </View>
-        )
-    }
-}
+        );
+    };
+};
+
+export default Login;
