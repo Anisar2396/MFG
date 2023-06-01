@@ -8,25 +8,30 @@ import { StyleSheet } from 'react-native';
 
     const styles = StyleSheet.create({
       container: {
-        flex: 1,
+        
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: 50,
+        width: 350,
         
       },
       title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginBottom: 50,
+        marginTop: 300
       },
       input: {
-        width: '100%',
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        marginBottom: 10,
-        paddingHorizontal: 10,
+        borderBottomWidth : 1,
+        borderColor: 'black',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        fontSize:16,
+        width: 200,
+
       },
+    
     });
 
   
