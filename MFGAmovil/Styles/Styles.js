@@ -8,7 +8,7 @@ import { StyleSheet } from 'react-native';
 
     const styles = StyleSheet.create({
       container: {
-        
+       
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
@@ -30,6 +30,11 @@ import { StyleSheet } from 'react-native';
         fontSize:16,
         width: 200,
 
+      },
+      img: {
+        width: 50,
+        height: 50,
+        alignItems: 'center',
       },
     
     });

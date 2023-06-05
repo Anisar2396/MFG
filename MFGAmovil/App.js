@@ -6,7 +6,7 @@ import LoginScreen from './Login/LoginScreen.js';
 class App extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View>
         <LoginScreen />
       </View>
     );
