@@ -10,7 +10,7 @@ class App extends Component {
         <LoginScreen />
       </View>
     );
-  }
-}
+  };
+};
 
 export default App;
