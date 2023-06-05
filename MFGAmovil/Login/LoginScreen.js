@@ -9,7 +9,9 @@ class LoginScreen extends Component {
            <View>
                 <View >
                     <LoginPH />
-                    <ButtonLogin />
+                   {
+                   //} <ButtonLogin />
+                }
                 </View>
            </View> 
         );

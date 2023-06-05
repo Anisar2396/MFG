@@ -14,6 +14,9 @@ import { StyleSheet } from 'react-native';
         justifyContent: 'center',
         marginBottom: 50,
         width: 350,
+        //++++++++++++++
+        position: 'relative',
+        flex: 1
         
       },
       title: {
@@ -31,6 +34,12 @@ import { StyleSheet } from 'react-native';
         width: 200,
 
       },
+      //inicio de sección agregada
+      button: {
+        marginTop: 50
+      }
+
+      //fin de sección agregada
     
     });
 

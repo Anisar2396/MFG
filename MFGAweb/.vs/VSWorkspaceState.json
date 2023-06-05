@@ -3,8 +3,11 @@
     "",
     "\\MFGAweb",
     "\\MFGAweb\\Controllers",
-    "\\MFGAweb\\Views"
+    "\\MFGAweb\\Models",
+    "\\MFGAweb\\Views",
+    "\\MFGAweb\\Views\\Home",
+    "\\MFGAweb\\Views\\Shared"
   ],
-  "SelectedNode": "\\MFGAweb.sln",
+  "SelectedNode": "\\MFGAweb\\Views\\_ViewStart.cshtml",
   "PreviewInSolutionExplorer": false
 }
