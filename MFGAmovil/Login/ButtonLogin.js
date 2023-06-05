@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Button } from 'react-native';
-import styles from '../Styles/Styles';
+import styles from '../Styles/Styles.js';
 
 
 
@@ -12,10 +12,11 @@ class ButtonLogin extends Component {
                 <Button
                    
                     title="Iniciar sesión"
-                    onPress={() => {
+                    onPress={(event) => {
                     // Lógica de inicio de sesión
                     }}
                 />
+
             </View>
         );
     };

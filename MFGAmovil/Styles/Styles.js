@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 
 
@@ -14,6 +13,9 @@ import { StyleSheet } from 'react-native';
         justifyContent: 'center',
         marginBottom: 50,
         width: 350,
+        //++++++++++++++
+        position: 'relative',
+        flex: 1
         
       },
       title: {
@@ -36,6 +38,12 @@ import { StyleSheet } from 'react-native';
         height: 50,
         alignItems: 'center',
       },
+      //inicio de sección agregada
+      button: {
+        marginTop: 50
+      }
+
+      //fin de sección agregada
     
     });
 

@@ -24,7 +24,7 @@ USE `mfga` ;
 DROP TABLE IF EXISTS `mfga`.`usuario` ;
 
 CREATE TABLE IF NOT EXISTS `mfga`.`usuario` (
-  `idusuario` INT NOT NULL,
+  `idusuario` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `apellido` VARCHAR(45) NULL DEFAULT NULL,
   `dni` VARCHAR(45) NULL DEFAULT NULL,
@@ -43,11 +43,12 @@ DROP TABLE IF EXISTS `mfga`.`admin` ;
 
 CREATE TABLE IF NOT EXISTS `mfga`.`admin` (
   `idadmin` INT NOT NULL,
-  `usuario_idusuario` INT NOT NULL,
-  PRIMARY KEY (`idadmin`),
-  INDEX `fk_admin_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE)
+  `usuario_idusuario` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idadmin`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_admin_usuario1_idx` ON `mfga`.`admin` (`usuario_idusuario` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -85,10 +86,11 @@ CREATE TABLE IF NOT EXISTS `mfga`.`provincia` (
   `idprovincia` INT NOT NULL,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `pais_idpais` INT NOT NULL,
-  PRIMARY KEY (`idprovincia`),
-  INDEX `fk_provincia_pais_idx` (`pais_idpais` ASC) VISIBLE)
+  PRIMARY KEY (`idprovincia`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_provincia_pais_idx` ON `mfga`.`provincia` (`pais_idpais` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -101,10 +103,11 @@ CREATE TABLE IF NOT EXISTS `mfga`.`ciudad` (
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `provincia_idprovincia` INT NOT NULL,
   `provincia_idprovincia1` INT NOT NULL,
-  PRIMARY KEY (`idciudad`, `provincia_idprovincia`),
-  INDEX `fk_ciudad_provincia1_idx` (`provincia_idprovincia1` ASC) VISIBLE)
+  PRIMARY KEY (`idciudad`, `provincia_idprovincia`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_ciudad_provincia1_idx` ON `mfga`.`ciudad` (`provincia_idprovincia1` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -118,10 +121,11 @@ CREATE TABLE IF NOT EXISTS `mfga`.`direccion` (
   `numero` VARCHAR(45) NULL DEFAULT NULL,
   `ciudad_idciudad` INT NOT NULL,
   `ciudad_provincia_idprovincia` INT NOT NULL,
-  PRIMARY KEY (`iddireccion`),
-  INDEX `fk_direccion_ciudad1_idx` (`ciudad_idciudad` ASC, `ciudad_provincia_idprovincia` ASC) VISIBLE)
+  PRIMARY KEY (`iddireccion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_direccion_ciudad1_idx` ON `mfga`.`direccion` (`ciudad_idciudad` ASC, `ciudad_provincia_idprovincia` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -131,11 +135,12 @@ DROP TABLE IF EXISTS `mfga`.`usuario-comun` ;
 
 CREATE TABLE IF NOT EXISTS `mfga`.`usuario-comun` (
   `idusuario-comun` INT NOT NULL,
-  `usuario_idusuario` INT NOT NULL,
-  PRIMARY KEY (`idusuario-comun`),
-  INDEX `fk_usuario-comun_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE)
+  `usuario_idusuario` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idusuario-comun`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_usuario-comun_usuario1_idx` ON `mfga`.`usuario-comun` (`usuario_idusuario` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -149,11 +154,13 @@ CREATE TABLE IF NOT EXISTS `mfga`.`lugar-creado-por-usuario` (
   `descripcion` VARCHAR(45) NULL DEFAULT NULL,
   `usuario-comun_idusuario-comun` INT NOT NULL,
   `direccion_iddireccion` INT NOT NULL,
-  PRIMARY KEY (`idporcomun`),
-  INDEX `fk_lugar-creado-por-usuario-comun_usuario-comun1_idx` (`usuario-comun_idusuario-comun` ASC) VISIBLE,
-  INDEX `fk_lugar-creado-por-usuario-comun_direccion1_idx` (`direccion_iddireccion` ASC) VISIBLE)
+  PRIMARY KEY (`idporcomun`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_lugar-creado-por-usuario-comun_usuario-comun1_idx` ON `mfga`.`lugar-creado-por-usuario` (`usuario-comun_idusuario-comun` ASC) VISIBLE;
+
+CREATE INDEX `fk_lugar-creado-por-usuario-comun_direccion1_idx` ON `mfga`.`lugar-creado-por-usuario` (`direccion_iddireccion` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -165,11 +172,13 @@ CREATE TABLE IF NOT EXISTS `mfga`.`corroboracion` (
   `idcorroboracion` INT NOT NULL,
   `admin_idadmin` INT NOT NULL,
   `lugar-creado-por-usuario_idporcomun` INT NOT NULL,
-  PRIMARY KEY (`idcorroboracion`),
-  INDEX `fk_corroboracion_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
-  INDEX `fk_corroboracion_lugar-creado-por-usuario1_idx` (`lugar-creado-por-usuario_idporcomun` ASC) VISIBLE)
+  PRIMARY KEY (`idcorroboracion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_corroboracion_admin1_idx` ON `mfga`.`corroboracion` (`admin_idadmin` ASC) VISIBLE;
+
+CREATE INDEX `fk_corroboracion_lugar-creado-por-usuario1_idx` ON `mfga`.`corroboracion` (`lugar-creado-por-usuario_idporcomun` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -183,11 +192,13 @@ CREATE TABLE IF NOT EXISTS `mfga`.`lugar` (
   `descripcion` VARCHAR(500) NULL DEFAULT NULL,
   `direccion_iddireccion` INT NOT NULL,
   `corroboracion_idcorroboracion` INT NOT NULL,
-  PRIMARY KEY (`idlugar`),
-  INDEX `fk_lugar_direccion1_idx` (`direccion_iddireccion` ASC) VISIBLE,
-  INDEX `fk_lugar_corroboracion1_idx` (`corroboracion_idcorroboracion` ASC) VISIBLE)
+  PRIMARY KEY (`idlugar`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_lugar_direccion1_idx` ON `mfga`.`lugar` (`direccion_iddireccion` ASC) VISIBLE;
+
+CREATE INDEX `fk_lugar_corroboracion1_idx` ON `mfga`.`lugar` (`corroboracion_idcorroboracion` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -200,10 +211,11 @@ CREATE TABLE IF NOT EXISTS `mfga`.`comentario` (
   `texto` VARCHAR(45) NULL DEFAULT NULL,
   `tarjeta_idtarjeta` INT NOT NULL,
   `lugar_idlugar` INT NOT NULL,
-  PRIMARY KEY (`idcomentario`),
-  INDEX `fk_comentario_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+  PRIMARY KEY (`idcomentario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_comentario_lugar1_idx` ON `mfga`.`comentario` (`lugar_idlugar` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -215,11 +227,13 @@ CREATE TABLE IF NOT EXISTS `mfga`.`creacion` (
   `idcreacion` INT NOT NULL,
   `admin_idadmin` INT NOT NULL,
   `lugar_idlugar` INT NOT NULL,
-  PRIMARY KEY (`idcreacion`),
-  INDEX `fk_creacion_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
-  INDEX `fk_creacion_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+  PRIMARY KEY (`idcreacion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_creacion_admin1_idx` ON `mfga`.`creacion` (`admin_idadmin` ASC) VISIBLE;
+
+CREATE INDEX `fk_creacion_lugar1_idx` ON `mfga`.`creacion` (`lugar_idlugar` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -232,10 +246,11 @@ CREATE TABLE IF NOT EXISTS `mfga`.`hotel` (
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `estrellas` INT NULL DEFAULT NULL,
   `direccion_iddireccion` INT NOT NULL,
-  PRIMARY KEY (`idhotel`),
-  INDEX `fk_hotel_direccion1_idx` (`direccion_iddireccion` ASC) VISIBLE)
+  PRIMARY KEY (`idhotel`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_hotel_direccion1_idx` ON `mfga`.`hotel` (`direccion_iddireccion` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -247,11 +262,13 @@ CREATE TABLE IF NOT EXISTS `mfga`.`hotel-cercano` (
   `idhotel-cercano` INT NOT NULL,
   `hotel_idhotel` INT NOT NULL,
   `lugar_idlugar` INT NOT NULL,
-  PRIMARY KEY (`idhotel-cercano`),
-  INDEX `fk_hotel-cercano_hotel1_idx` (`hotel_idhotel` ASC) VISIBLE,
-  INDEX `fk_hotel-cercano_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+  PRIMARY KEY (`idhotel-cercano`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_hotel-cercano_hotel1_idx` ON `mfga`.`hotel-cercano` (`hotel_idhotel` ASC) VISIBLE;
+
+CREATE INDEX `fk_hotel-cercano_lugar1_idx` ON `mfga`.`hotel-cercano` (`lugar_idlugar` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -265,12 +282,15 @@ CREATE TABLE IF NOT EXISTS `mfga`.`lugar-calificado` (
   `calificacion_idcalificacion` INT NOT NULL,
   `usuario_idusuario` INT NOT NULL,
   `lugar_idlugar` INT NOT NULL,
-  PRIMARY KEY (`idlugar-calificado`),
-  INDEX `fk_lugar-calificado_calificacion1_idx` (`calificacion_idcalificacion` ASC) VISIBLE,
-  INDEX `fk_lugar-calificado_usuario1_idx` (`usuario_idusuario` ASC) VISIBLE,
-  INDEX `fk_lugar-calificado_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+  PRIMARY KEY (`idlugar-calificado`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_lugar-calificado_calificacion1_idx` ON `mfga`.`lugar-calificado` (`calificacion_idcalificacion` ASC) VISIBLE;
+
+CREATE INDEX `fk_lugar-calificado_usuario1_idx` ON `mfga`.`lugar-calificado` (`usuario_idusuario` ASC) VISIBLE;
+
+CREATE INDEX `fk_lugar-calificado_lugar1_idx` ON `mfga`.`lugar-calificado` (`lugar_idlugar` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -282,10 +302,11 @@ CREATE TABLE IF NOT EXISTS `mfga`.`ubicacion-en-mapa` (
   `idubicacion-en-mapa` INT NOT NULL,
   `enlace` VARCHAR(45) NULL DEFAULT NULL,
   `lugar_idlugar` INT NOT NULL,
-  PRIMARY KEY (`idubicacion-en-mapa`),
-  INDEX `fk_ubicacion-en-mapa_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+  PRIMARY KEY (`idubicacion-en-mapa`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_ubicacion-en-mapa_lugar1_idx` ON `mfga`.`ubicacion-en-mapa` (`lugar_idlugar` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -297,11 +318,47 @@ CREATE TABLE IF NOT EXISTS `mfga`.`info` (
   `idinfo` INT NOT NULL,
   `descripcion` LONGTEXT NULL,
   `lugar_idlugar` INT NOT NULL,
-  PRIMARY KEY (`idinfo`),
-  INDEX `fk_info_lugar1_idx` (`lugar_idlugar` ASC) VISIBLE)
+  PRIMARY KEY (`idinfo`))
 ENGINE = InnoDB;
+
+CREATE INDEX `fk_info_lugar1_idx` ON `mfga`.`info` (`lugar_idlugar` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `mfga`.`usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mfga`;
+INSERT INTO `mfga`.`usuario` (`idusuario`, `nombre`, `apellido`, `dni`, `contrasenia`, `mail`, `tel`) VALUES ('gonza2023', 'Gonzalo', 'Acero', '87546836', 'gonzalologin', 'gonzalo.acero@davinci.edu.ar', '1146547575');
+INSERT INTO `mfga`.`usuario` (`idusuario`, `nombre`, `apellido`, `dni`, `contrasenia`, `mail`, `tel`) VALUES ('seba2023', 'Sebastian', 'Peitiado', '65324726', 'sebastianlogin', 'sebastian.peitiado@davinci.edu.ar', '1198735486');
+INSERT INTO `mfga`.`usuario` (`idusuario`, `nombre`, `apellido`, `dni`, `contrasenia`, `mail`, `tel`) VALUES ('ani2023', 'Ani', 'Sargsyan', '19107866', 'anilogin', 'ani.sargsyan@davinci.edu.ar', '1198734589');
+INSERT INTO `mfga`.`usuario` (`idusuario`, `nombre`, `apellido`, `dni`, `contrasenia`, `mail`, `tel`) VALUES ('usuario2023', 'Usuario', 'Comun', '98365478', 'usuariologin', 'usuario.comun@davinci.edu.ar', '1108459879');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mfga`.`admin`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mfga`;
+INSERT INTO `mfga`.`admin` (`idadmin`, `usuario_idusuario`) VALUES (1, 'gonza2023');
+INSERT INTO `mfga`.`admin` (`idadmin`, `usuario_idusuario`) VALUES (2, 'seba2023');
+INSERT INTO `mfga`.`admin` (`idadmin`, `usuario_idusuario`) VALUES (3, 'ani2023');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mfga`.`usuario-comun`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mfga`;
+INSERT INTO `mfga`.`usuario-comun` (`idusuario-comun`, `usuario_idusuario`) VALUES (1, 'usuario2023');
+
+COMMIT;
+
