@@ -7,12 +7,13 @@
       "sslPort": 44303
     }
   },
+  
   "profiles": {
     "MFGAweb": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7012;http://localhost:5012",
+      "applicationUrl": "https://localhost:5012;https://localhost:7012;",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
