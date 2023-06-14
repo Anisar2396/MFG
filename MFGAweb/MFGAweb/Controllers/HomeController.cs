@@ -6,12 +6,24 @@ namespace MFGAweb.Controllers
     public class HomeController : Controller
     {
         // GET: HomeController
-        public ActionResult Index()
+       /* public ActionResult Index()
+        {
+            return View();
+        }
+        */
+        // GET: HomeController/Details/5
+
+        public IActionResult Register()
         {
             return View();
         }
 
-        // GET: HomeController/Details/5
+        
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Details(int id)
         {
             return View();
